@@ -72,7 +72,7 @@ def generate():
     except Exception:
         font_sub = ImageFont.load_default()
 
-    sub_text = "AI・業務自動化の伴走支援"
+    sub_text = "AI・業務最適化の伴走支援"
     bbox_s = d.textbbox((0, 0), sub_text, font=font_sub)
     sw = bbox_s[2] - bbox_s[0]
     d.text(((W - sw) // 2, 130), sub_text, fill=GOLD_LIGHT, font=font_sub)
