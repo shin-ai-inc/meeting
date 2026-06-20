@@ -108,6 +108,18 @@
       letter-spacing: 0.02em;
     }
 
+    /* ── Hero visual ── */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 36px;
+    }
+
+    .hero-visual svg {
+      width: 260px;
+      height: auto;
+    }
+
     /* ── 三つの状態 ── */
     .trio {
       text-align: center;
@@ -136,6 +148,7 @@
     ──────────────────────────────────── */
     .problem {
       background: var(--navy);
+      background-image: radial-gradient(ellipse 60% 50% at 75% 40%, rgba(197,165,90,0.04) 0%, transparent 100%);
       padding: 80px 28px;
       text-align: center;
     }
@@ -242,9 +255,18 @@
     .benefit-dash {
       display: block;
       width: 20px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto 16px;
+      height: 20px;
+      margin: 0 auto 14px;
+    }
+
+    .benefit-dash svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .benefit-name {
@@ -278,6 +300,17 @@
       color: var(--text-mid);
       line-height: 2;
       margin-bottom: 48px;
+    }
+
+    .vision-visual {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .vision-visual svg {
+      width: 120px;
+      height: auto;
     }
 
     .vision-list {
@@ -524,6 +557,7 @@
        Desktop
     ──────────────────────────────────── */
     @media (min-width: 640px) {
+      .hero-visual svg { width: 320px; }
       .hero h1 { font-size: 2.6rem; }
       .problem-key { font-size: 2.1rem; }
       .sec-title { font-size: 1.35rem; }
@@ -609,6 +643,27 @@
 
   <section class="hero">
     <h1 class="rv">まずは、<br>AIが働ける<br>土台を。</h1>
+
+    <div class="hero-visual rv">
+      <svg viewBox="0 0 280 120" fill="none" aria-hidden="true">
+        <rect x="12" y="20" width="38" height="28" rx="3" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.16" transform="rotate(-10 31 34)"/>
+        <rect x="52" y="52" width="34" height="24" rx="3" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.12" transform="rotate(7 69 64)"/>
+        <rect x="16" y="66" width="30" height="22" rx="3" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.10" transform="rotate(-5 31 77)"/>
+        <rect x="54" y="16" width="26" height="20" rx="2" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.09" transform="rotate(13 67 26)"/>
+        <rect x="4" y="42" width="32" height="22" rx="3" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.07" transform="rotate(4 20 53)"/>
+        <line x1="104" y1="60" x2="160" y2="60" stroke="#c5a55a" stroke-width="0.8" stroke-opacity="0.25" stroke-dasharray="3 3"/>
+        <path d="M156 56 L164 60 L156 64" stroke="#c5a55a" stroke-width="0.8" stroke-opacity="0.25" fill="none"/>
+        <rect x="180" y="16" width="84" height="16" rx="3" fill="#061f44" fill-opacity="0.04" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.16"/>
+        <rect x="180" y="40" width="84" height="16" rx="3" fill="#061f44" fill-opacity="0.06" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.20"/>
+        <rect x="180" y="64" width="84" height="16" rx="3" fill="#c5a55a" fill-opacity="0.06" stroke="#c5a55a" stroke-width="0.8" stroke-opacity="0.22"/>
+        <rect x="180" y="88" width="84" height="16" rx="3" fill="#061f44" fill-opacity="0.04" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.16"/>
+        <line x1="188" y1="24" x2="232" y2="24" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.08"/>
+        <line x1="188" y1="48" x2="240" y2="48" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.10"/>
+        <line x1="188" y1="72" x2="236" y2="72" stroke="#c5a55a" stroke-width="0.8" stroke-opacity="0.12"/>
+        <line x1="188" y1="96" x2="224" y2="96" stroke="#061f44" stroke-width="0.8" stroke-opacity="0.08"/>
+      </svg>
+    </div>
+
     <p class="hero-body rv">
       社内に散在する文書・資料・台帳を整え、<br>
       AIが「読める・つながる・答えられる」状態へ。<br><br>
@@ -657,24 +712,24 @@
     <h2 class="sec-title rv">情報を整えると、<br>AIは組織の力になります。</h2>
     <div class="benefit-list rv">
       <div class="benefit-item">
-        <span class="benefit-dash"></span>
+        <span class="benefit-dash"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></span>
         <div class="benefit-name">探す時間が減る</div>
-        <div class="benefit-detail">必要な情報に、必要なときにたどり着ける</div>
+        <div class="benefit-detail">必要な情報に、<br>必要なときにたどり着ける</div>
       </div>
       <div class="benefit-item">
-        <span class="benefit-dash"></span>
+        <span class="benefit-dash"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
         <div class="benefit-name">判断が速くなる</div>
-        <div class="benefit-detail">正確な情報に基づいた意思決定ができる</div>
+        <div class="benefit-detail">正確な情報に基づいた<br>意思決定ができる</div>
       </div>
       <div class="benefit-item">
-        <span class="benefit-dash"></span>
+        <span class="benefit-dash"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
         <div class="benefit-name">知識が組織に残る</div>
-        <div class="benefit-detail">属人化を防ぎ、ナレッジを資産に変える</div>
+        <div class="benefit-detail">属人化を防ぎ、<br>ナレッジを資産に変える</div>
       </div>
       <div class="benefit-item">
-        <span class="benefit-dash"></span>
+        <span class="benefit-dash"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
         <div class="benefit-name">安全に活用できる</div>
-        <div class="benefit-detail">情報の整理が、セキュリティの土台になる</div>
+        <div class="benefit-detail">情報の整理が、<br>セキュリティの土台になる</div>
       </div>
     </div>
   </section>
@@ -682,6 +737,13 @@
   <section class="vision">
     <h2 class="sec-title rv">6か月後、御社に残るもの。</h2>
     <p class="vision-sub rv">AI活用の土台と、組織に染みこむ伴走の成果。</p>
+    <div class="vision-visual rv">
+      <svg viewBox="0 0 100 48" fill="none" aria-hidden="true">
+        <rect x="8" y="30" width="20" height="14" rx="3" fill="#061f44" fill-opacity="0.08" stroke="#061f44" stroke-width="0.6" stroke-opacity="0.12"/>
+        <rect x="38" y="16" width="20" height="28" rx="3" fill="#061f44" fill-opacity="0.10" stroke="#061f44" stroke-width="0.6" stroke-opacity="0.16"/>
+        <rect x="68" y="4" width="20" height="40" rx="3" fill="#c5a55a" fill-opacity="0.12" stroke="#c5a55a" stroke-width="0.6" stroke-opacity="0.22"/>
+      </svg>
+    </div>
     <div class="vision-list rv">
       <div class="vision-item">
         <div class="vision-name">AIが読める情報基盤</div>
