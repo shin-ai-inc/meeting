@@ -23,12 +23,17 @@ function doPost(e) {
     }
 
     var name    = _sanitize(data.name, 100);
+    var email   = _sanitize(data.email, 254);
     var company = _sanitize(data.company, 200);
     var dates   = _sanitize(data.dates, 500);
     var message = _sanitize(data.message, 2000);
 
     if (!name) {
       return _json({ error: 'お名前は必須です' });
+    }
+
+    if (!email) {
+      return _json({ error: 'メールアドレスは必須です' });
     }
 
     var subjectLabel = company || name;
@@ -46,6 +51,9 @@ function doPost(e) {
       'お名前：',
       name,
       '',
+      'メールアドレス：',
+      email,
+      '',
       '会社名：',
       company || '未入力',
       '',
@@ -59,11 +67,12 @@ function doPost(e) {
       now,
       '',
       '送信元ページ：',
-      'https://meeting-taupe.vercel.app/consult'
+      'https://shinai.vercel.app/consult'
     ].join('\n');
 
     GmailApp.sendEmail(TO_EMAIL, subject, body, {
-      name: 'ShinAI 相談フォーム'
+      name: 'ShinAI 相談フォーム',
+      replyTo: email
     });
 
     return _json({ ok: true });

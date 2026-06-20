@@ -348,6 +348,15 @@
         </div>
 
         <div class="form-group">
+          <label class="form-label" for="email">
+            メールアドレス
+            <span class="badge-required">必須</span>
+          </label>
+          <input type="email" id="email" name="email" placeholder="taro.yamada@example.com" required autocomplete="email" inputmode="email">
+          <div class="error-msg" id="emailError">メールアドレスをご入力ください</div>
+        </div>
+
+        <div class="form-group">
           <label class="form-label" for="company">
             会社名
             <span class="badge-optional">任意</span>
@@ -403,7 +412,7 @@
         内容を確認後、弊社より日程のご案内と<br>当日のZoomリンクをお送りします。
       </p>
       <p class="note">通常1～2営業日以内にご連絡いたします。</p>
-      <a href="https://meeting-taupe.vercel.app" class="back-link">ShinAIのサイトへ戻る</a>
+      <a href="https://shinai.vercel.app" class="back-link">ShinAIのサイトへ戻る</a>
     </div>
   </div>
 
@@ -418,10 +427,13 @@
       var btn = document.getElementById('submitBtn');
       var nameInput = document.getElementById('name');
       var nameError = document.getElementById('nameError');
+      var emailInput = document.getElementById('email');
+      var emailError = document.getElementById('emailError');
       var formSection = document.getElementById('formSection');
       var successScreen = document.getElementById('successScreen');
       var lastSubmitTime = 0;
       var THROTTLE_MS = 10000;
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       nameInput.addEventListener('input', function () {
         if (nameInput.value.trim()) {
@@ -430,16 +442,33 @@
         }
       });
 
+      emailInput.addEventListener('input', function () {
+        if (emailInput.value.trim()) {
+          emailInput.classList.remove('has-error');
+          emailError.classList.remove('visible');
+        }
+      });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        var hasError = false;
         var name = nameInput.value.trim();
+        var email = emailInput.value.trim();
+
         if (!name) {
           nameInput.classList.add('has-error');
           nameError.classList.add('visible');
-          nameInput.focus();
-          return;
+          if (!hasError) { nameInput.focus(); hasError = true; }
         }
+
+        if (!email || !emailPattern.test(email)) {
+          emailInput.classList.add('has-error');
+          emailError.classList.add('visible');
+          if (!hasError) { emailInput.focus(); hasError = true; }
+        }
+
+        if (hasError) return;
 
         // Honeypot check
         if (document.getElementById('website').value) return;
@@ -457,6 +486,7 @@
 
         var data = {
           name: name,
+          email: email,
           company: document.getElementById('company').value.trim(),
           dates: document.getElementById('dates').value.trim(),
           message: document.getElementById('message').value.trim()
@@ -468,10 +498,11 @@
           body: JSON.stringify(data)
         })
         .then(function (res) {
-          return res.json();
+          if (!res.ok) throw new Error('Network error');
+          return res.text();
         })
-        .then(function (json) {
-          if (json.error) throw new Error(json.error);
+        .then(function (text) {
+          try { var json = JSON.parse(text); if (json.error) throw new Error(json.error); } catch(e) {}
           formSection.classList.add('hidden');
           successScreen.classList.add('visible');
           window.scrollTo({ top: 0, behavior: 'smooth' });
