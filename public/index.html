@@ -108,6 +108,21 @@
       letter-spacing: 0.02em;
     }
 
+    /* ── Hero image ── */
+    .hero-img {
+      margin: 36px auto 40px;
+      max-width: 600px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(6, 31, 68, 0.10);
+    }
+
+    .hero-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     /* ── 三つの状態 ── */
     .trio {
       text-align: center;
@@ -306,6 +321,20 @@
       color: var(--text-mid);
       line-height: 2;
       margin-bottom: 48px;
+    }
+
+    .section-img {
+      margin: 0 auto 48px;
+      max-width: 540px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 24px rgba(6, 31, 68, 0.08);
+    }
+
+    .section-img img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .vision-list {
@@ -562,6 +591,8 @@
        Desktop
     ──────────────────────────────────── */
     @media (min-width: 640px) {
+      .hero-img { max-width: 720px; }
+      .section-img { max-width: 640px; }
       .hero h1 { font-size: 2.6rem; }
       .problem-key { font-size: 2.1rem; }
       .sec-title { font-size: 1.35rem; }
@@ -651,6 +682,10 @@
 
   <section class="hero">
     <h1 class="rv">まずは、<br>AIが働ける<br>土台を。</h1>
+
+    <div class="hero-img rv">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="デジタルネットワークで結ばれた情報基盤" width="1200" height="800" loading="eager">
+    </div>
 
     <p class="hero-body rv">
       社内に散在する文書・資料・台帳を整え、<br>
@@ -746,6 +781,9 @@
 
   <section class="steps">
     <h2 class="sec-title rv">導入から定着まで、<br>3つのステップで伴走します。</h2>
+    <div class="section-img rv">
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80" alt="チームでの伴走支援" width="1200" height="800" loading="lazy">
+    </div>
     <div class="steps-list rv">
       <div class="step">
         <div class="step-num">01</div>
