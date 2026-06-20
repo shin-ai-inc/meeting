@@ -59,7 +59,7 @@ function doPost(e) {
       now,
       '',
       '送信元ページ：',
-      'https://shinai.life/consult'
+      'https://meeting-taupe.vercel.app/consult'
     ].join('\n');
 
     GmailApp.sendEmail(TO_EMAIL, subject, body, {
