@@ -48,6 +48,8 @@
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     /* ────────────────────────────────────
@@ -87,7 +89,7 @@
     ──────────────────────────────────── */
     .hero {
       text-align: center;
-      padding: 56px 28px 40px;
+      padding: 56px 28px 48px;
     }
 
     .hero h1 {
@@ -102,25 +104,14 @@
 
     .hero-body {
       font-size: 0.875rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-mid);
       line-height: 2.1;
       letter-spacing: 0.02em;
     }
 
-    /* ── Hero image ── */
-    .hero-img {
-      margin: 36px auto 40px;
-      max-width: 600px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(6, 31, 68, 0.10);
-    }
-
-    .hero-img img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .hero-body p + p {
+      margin-top: 1.2em;
     }
 
     /* ── 三つの状態 ── */
@@ -157,8 +148,8 @@
 
     .problem-pre {
       font-size: 0.8rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
       line-height: 2;
       letter-spacing: 0.04em;
       margin-bottom: 20px;
@@ -176,8 +167,8 @@
 
     .problem-post {
       font-size: 0.8rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
       line-height: 2;
       letter-spacing: 0.04em;
     }
@@ -246,7 +237,7 @@
 
     .pain-detail {
       font-size: 0.8rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-sub);
       line-height: 1.8;
     }
@@ -276,8 +267,8 @@
     .benefit-num {
       display: block;
       font-family: "Noto Serif JP", serif;
-      font-size: 0.7rem;
-      font-weight: 300;
+      font-size: 0.8rem;
+      font-weight: 400;
       color: var(--gold);
       letter-spacing: 0.15em;
       margin-bottom: 10px;
@@ -301,7 +292,7 @@
 
     .benefit-detail {
       font-size: 0.8rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-sub);
       line-height: 1.8;
     }
@@ -317,7 +308,7 @@
 
     .vision-sub {
       font-size: 0.85rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-mid);
       line-height: 2;
       margin-bottom: 48px;
@@ -338,7 +329,7 @@
     }
 
     .vision-list {
-      max-width: 400px;
+      max-width: 440px;
       margin: 0 auto;
       text-align: left;
     }
@@ -372,7 +363,7 @@
 
     .vision-detail {
       font-size: 0.78rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-sub);
       line-height: 1.8;
     }
@@ -386,7 +377,7 @@
     }
 
     .steps-list {
-      max-width: 420px;
+      max-width: 440px;
       margin: 0 auto;
     }
 
@@ -445,7 +436,7 @@
 
     .step-desc {
       font-size: 0.8rem;
-      font-weight: 300;
+      font-weight: 400;
       color: var(--text-sub);
       line-height: 1.9;
     }
@@ -591,7 +582,6 @@
        Desktop
     ──────────────────────────────────── */
     @media (min-width: 640px) {
-      .hero-img { max-width: 720px; }
       .section-img { max-width: 640px; }
       .hero h1 { font-size: 2.6rem; }
       .problem-key { font-size: 2.1rem; }
@@ -667,7 +657,7 @@
       }
 
       .steps-list {
-        max-width: 520px;
+        max-width: 560px;
       }
     }
   </style>
@@ -683,12 +673,12 @@
   <section class="hero">
     <h1 class="rv">まずは、<br>AIが働ける<br>土台を。</h1>
 
-    <p class="hero-body rv">
-      社内に散在する文書・資料・台帳を整え、<br>
-      AIが「読める・つながる・答えられる」状態へ。<br><br>
-      情報の構造化から活用環境の構築まで、<br>
-      AIネイティブな基盤づくりを伴走します。
-    </p>
+    <div class="hero-body rv">
+      <p>社内に散在する文書・資料・台帳を整え、<br>
+      AIが「読める・つながる・答えられる」状態へ。</p>
+      <p>情報の構造化から活用環境の構築まで、<br>
+      AIネイティブな基盤づくりを伴走します。</p>
+    </div>
   </section>
 
   <div class="trio rv">
