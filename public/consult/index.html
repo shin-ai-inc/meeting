@@ -409,6 +409,11 @@
 
   <script>
     (function () {
+      // ============================================================
+      // Google Apps Script のウェブアプリURL（デプロイ後に置き換え）
+      // ============================================================
+      var GAS_URL = 'YOUR_GAS_WEB_APP_URL_HERE';
+
       var form = document.getElementById('consultForm');
       var btn = document.getElementById('submitBtn');
       var nameInput = document.getElementById('name');
@@ -454,17 +459,19 @@
           name: name,
           company: document.getElementById('company').value.trim(),
           dates: document.getElementById('dates').value.trim(),
-          message: document.getElementById('message').value.trim(),
-          _t: new Date().toISOString()
+          message: document.getElementById('message').value.trim()
         };
 
-        fetch('/api/consult', {
+        fetch(GAS_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify(data)
         })
         .then(function (res) {
-          if (!res.ok) throw new Error('送信に失敗しました');
+          return res.json();
+        })
+        .then(function (json) {
+          if (json.error) throw new Error(json.error);
           formSection.classList.add('hidden');
           successScreen.classList.add('visible');
           window.scrollTo({ top: 0, behavior: 'smooth' });
