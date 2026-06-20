@@ -1,0 +1,9 @@
+{
+  "name": "shinai-meeting",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "generate-pdf": "node scripts/generate-pdf.js",
+    "dev": "npx serve public -l 3000"
+  }
+}

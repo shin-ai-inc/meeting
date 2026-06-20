@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#061f44">
+  <meta name="description" content="ShinAI｜30分相談のお申し込み">
+  <title>30分相談のお申し込み｜ShinAI</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+    :root {
+      --navy: #061f44;
+      --navy-light: #0a2d5c;
+      --gold: #c5a55a;
+      --gold-hover: #b8963f;
+      --text: #1a1a1a;
+      --text-sub: #5a5a5a;
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --border: #d8d8d4;
+      --border-focus: #061f44;
+      --error: #c44;
+      --success-bg: #f7f7f3;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      min-height: 100dvh;
+    }
+
+    .page {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .brand-name {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.12em;
+    }
+
+    .brand-divider {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      margin: 12px auto;
+    }
+
+    h1 {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-align: center;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .badge-required {
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--navy);
+      padding: 1px 6px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-optional {
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: var(--text-sub);
+      background: #eee;
+      padding: 1px 6px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--border-focus);
+    }
+
+    input[type="text"].has-error {
+      border-color: var(--error);
+    }
+
+    .error-msg {
+      font-size: 0.8rem;
+      color: var(--error);
+      margin-top: 6px;
+      display: none;
+    }
+
+    .error-msg.visible {
+      display: block;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.7;
+    }
+
+    .form-note {
+      font-size: 0.825rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 32px;
+      padding: 0 8px;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 18px 24px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: background 0.2s, opacity 0.2s;
+      -webkit-tap-highlight-color: rgba(197, 165, 90, 0.18);
+      min-height: 56px;
+    }
+
+    .submit-btn:hover {
+      background: var(--navy-light);
+    }
+
+    .submit-btn:active {
+      opacity: 0.9;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .submit-btn .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto;
+    }
+
+    .submit-btn.loading .btn-text { display: none; }
+    .submit-btn.loading .spinner { display: block; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .privacy-link {
+      display: block;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      margin-top: 20px;
+    }
+
+    .privacy-link a {
+      color: var(--text-sub);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* Honeypot */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      tab-index: -1;
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .success-screen.visible {
+      display: block;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .success-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-screen h2 {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .success-screen p {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.9;
+      margin-bottom: 8px;
+    }
+
+    .success-screen .note {
+      font-size: 0.825rem;
+      color: var(--text-sub);
+      margin-top: 16px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      font-size: 0.875rem;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .back-link:hover {
+      border-color: var(--navy);
+    }
+
+    .form-section.hidden { display: none; }
+
+    @media (max-width: 420px) {
+      .page { padding: 36px 20px 48px; }
+      h1 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="brand">
+      <div class="brand-name">ShinAI</div>
+      <span class="brand-divider"></span>
+    </div>
+
+    <div class="form-section" id="formSection">
+      <h1>30分相談のお申し込み</h1>
+
+      <p class="intro">
+        御社の情報環境と、AI活用の可能性を一緒に整理します。<br><br>
+        分かる範囲だけご入力ください。<br>
+        具体的な導入時期が決まっていなくても問題ありません。
+      </p>
+
+      <form id="consultForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="name">
+            お名前
+            <span class="badge-required">必須</span>
+          </label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required autocomplete="name">
+          <div class="error-msg" id="nameError">お名前をご入力ください</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="company">
+            会社名
+            <span class="badge-optional">任意</span>
+          </label>
+          <input type="text" id="company" name="company" placeholder="株式会社〇〇" autocomplete="organization">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dates">
+            直近ご都合の良いお日にち（2～3日）
+            <span class="badge-optional">任意</span>
+          </label>
+          <textarea id="dates" name="dates" rows="2" placeholder="6月25日午後、6月26日午前、6月29日終日"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">
+            ご相談内容
+            <span class="badge-optional">任意</span>
+          </label>
+          <textarea id="message" name="message" rows="3" placeholder="社内ファイルの整理やAI活用について相談したい"></textarea>
+        </div>
+
+        <!-- Honeypot -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Website</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p class="form-note">
+          このまま送信いただいても問題ありません。<br>
+          内容を確認後、弊社より日程のご案内と当日のZoomリンクをお送りいたします。
+        </p>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="btn-text">30分相談を申し込む</span>
+          <span class="spinner"></span>
+        </button>
+
+        <div class="privacy-link">
+          <a href="/privacy" target="_blank" rel="noopener">プライバシーポリシー</a>
+        </div>
+      </form>
+    </div>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      <h2>お申し込みを受け付けました</h2>
+      <p>
+        ありがとうございます。<br>
+        内容を確認後、弊社より日程のご案内と<br>当日のZoomリンクをお送りします。
+      </p>
+      <p class="note">通常1～2営業日以内にご連絡いたします。</p>
+      <a href="https://shinai.life" class="back-link">ShinAIのサイトへ戻る</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('consultForm');
+      var btn = document.getElementById('submitBtn');
+      var nameInput = document.getElementById('name');
+      var nameError = document.getElementById('nameError');
+      var formSection = document.getElementById('formSection');
+      var successScreen = document.getElementById('successScreen');
+      var lastSubmitTime = 0;
+      var THROTTLE_MS = 10000;
+
+      nameInput.addEventListener('input', function () {
+        if (nameInput.value.trim()) {
+          nameInput.classList.remove('has-error');
+          nameError.classList.remove('visible');
+        }
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var name = nameInput.value.trim();
+        if (!name) {
+          nameInput.classList.add('has-error');
+          nameError.classList.add('visible');
+          nameInput.focus();
+          return;
+        }
+
+        // Honeypot check
+        if (document.getElementById('website').value) return;
+
+        // Throttle
+        var now = Date.now();
+        if (now - lastSubmitTime < THROTTLE_MS) {
+          alert('送信間隔が短すぎます。少し時間をおいてから再度お試しください。');
+          return;
+        }
+        lastSubmitTime = now;
+
+        btn.disabled = true;
+        btn.classList.add('loading');
+
+        var data = {
+          name: name,
+          company: document.getElementById('company').value.trim(),
+          dates: document.getElementById('dates').value.trim(),
+          message: document.getElementById('message').value.trim(),
+          _t: new Date().toISOString()
+        };
+
+        fetch('/api/consult', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+        .then(function (res) {
+          if (!res.ok) throw new Error('送信に失敗しました');
+          formSection.classList.add('hidden');
+          successScreen.classList.add('visible');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState({ sent: true }, '', window.location.href);
+          }
+        })
+        .catch(function () {
+          alert('送信に失敗しました。時間をおいて再度お試しください。');
+          btn.disabled = false;
+          btn.classList.remove('loading');
+        });
+      });
+
+      // Prevent re-submit on back
+      window.addEventListener('pageshow', function (e) {
+        if (e.persisted) {
+          btn.disabled = false;
+          btn.classList.remove('loading');
+        }
+      });
+
+      if (window.history && window.history.state && window.history.state.sent) {
+        formSection.classList.add('hidden');
+        successScreen.classList.add('visible');
+      }
+    })();
+  </script>
+</body>
+</html>
