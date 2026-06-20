@@ -497,15 +497,10 @@
 
         fetch(GAS_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          mode: 'no-cors'
         })
-        .then(function (res) {
-          if (!res.ok) throw new Error('Network error');
-          return res.text();
-        })
-        .then(function (text) {
-          try { var json = JSON.parse(text); if (json.error) throw new Error(json.error); } catch(e) {}
+        .then(function () {
           formSection.classList.add('hidden');
           successScreen.classList.add('visible');
           window.scrollTo({ top: 0, behavior: 'smooth' });
