@@ -15,7 +15,7 @@ OUTPUT_PATH = os.path.join(PROJECT_DIR, 'public', 'assets', 'shinai-lp.pdf')
 IMG_W = 1206
 IMG_H = 2622
 
-CONSULT_URL = 'https://shinai.vercel.app/consult'
+CONSULT_URL = 'https://shinai-info.vercel.app/consult'
 
 # CTA button position (matching the HTML overlay percentages)
 CTA_LEFT_PCT = 0.164

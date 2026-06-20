@@ -67,7 +67,7 @@ function doPost(e) {
       now,
       '',
       '送信元ページ：',
-      'https://shinai.vercel.app/consult'
+      'https://shinai-info.vercel.app/consult'
     ].join('\n');
 
     GmailApp.sendEmail(TO_EMAIL, subject, body, {
