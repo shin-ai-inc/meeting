@@ -4,12 +4,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#061f44">
-  <meta name="description" content="ShinAI｜AIが働ける情報基盤づくりと導入伴走支援">
+  <meta name="description" content="ShinAI｜社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援">
   <title>ShinAI｜AIが働ける土台を。</title>
+
+  <!-- OGP -->
+  <meta property="og:title" content="ShinAI｜AIが働ける土台を。">
+  <meta property="og:description" content="社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援">
+  <meta property="og:image" content="https://shinai-info.vercel.app/assets/ogp.png">
+  <meta property="og:url" content="https://shinai-info.vercel.app">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="ShinAI">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preload -->
+  <link rel="preload" as="image" type="image/webp" href="assets/shinai-lp-sm.webp" media="(max-width: 640px)">
+  <link rel="preload" as="image" type="image/webp" href="assets/shinai-lp.webp" media="(min-width: 641px)">
+
   <style>
     :root {
       color-scheme: light;
       --navy: #061f44;
+      --gold: #c5a55a;
       --focus: #f0b640;
     }
     * { box-sizing: border-box; }
@@ -20,7 +36,8 @@
     }
     body {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -32,6 +49,7 @@
       background: #fff;
       overflow: hidden;
       box-shadow: 0 0 40px rgba(0, 0, 0, .18);
+      padding-bottom: 80px;
     }
     .lp-image {
       display: block;
@@ -55,30 +73,92 @@
     }
     .sr-only {
       position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
+      white-space: nowrap; border: 0;
     }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+      background: linear-gradient(transparent, rgba(6, 31, 68, 0.95) 30%);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .floating-cta.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .floating-cta a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 400px;
+      padding: 16px 24px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      -webkit-tap-highlight-color: rgba(197, 165, 90, 0.18);
+      transition: background 0.2s;
+      min-height: 52px;
+    }
+    .floating-cta a:hover {
+      background: #b8963f;
+    }
+    .floating-cta a:active {
+      opacity: 0.9;
+    }
+    .floating-cta svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
     @media (min-width: 1207px) {
-      body { padding: 24px 0; }
+      body { padding: 24px 0 0; }
       .lp { border-radius: 2px; }
     }
   </style>
 </head>
 <body>
   <main class="lp" aria-label="ShinAI AIネイティブ基盤のご案内">
-    <img
-      class="lp-image"
-      src="assets/shinai-lp-1206x2622.png"
-      width="1206"
-      height="2622"
-      alt="ShinAI。社内に散在する文書・資料・台帳を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援のご案内。"
-    >
+    <picture>
+      <source srcset="assets/shinai-lp-sm.webp" type="image/webp" media="(max-width: 640px)">
+      <source srcset="assets/shinai-lp.webp" type="image/webp">
+      <img
+        class="lp-image"
+        src="assets/shinai-lp-1206x2622.png"
+        width="1206"
+        height="2622"
+        alt="ShinAI。社内に散在する文書・資料・台帳を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援のご案内。"
+        fetchpriority="high"
+        decoding="async"
+      >
+    </picture>
     <a
       class="cta-link"
       href="https://shinai-info.vercel.app/consult"
@@ -86,5 +166,41 @@
       title="30分相談を申し込む"
     ><span class="sr-only">30分相談を申し込む</span></a>
   </main>
+
+  <!-- Floating CTA: always visible on scroll -->
+  <div class="floating-cta" id="floatingCta">
+    <a href="https://shinai-info.vercel.app/consult">
+      <svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      30分相談を申し込む
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      var cta = document.getElementById('floatingCta');
+      var shown = false;
+      var ticking = false;
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var scrollY = window.scrollY || window.pageYOffset;
+          var shouldShow = scrollY > 200;
+          if (shouldShow !== shown) {
+            shown = shouldShow;
+            if (shown) {
+              cta.classList.add('visible');
+            } else {
+              cta.classList.remove('visible');
+            }
+          }
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
 </body>
 </html>
