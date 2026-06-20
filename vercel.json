@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "node scripts/generate-pdf.js",
   "outputDirectory": "public",
   "rewrites": [
     { "source": "/consult", "destination": "/consult/index.html" }
