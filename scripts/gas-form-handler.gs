@@ -32,8 +32,8 @@ function doPost(e) {
       return _json({ error: 'お名前は必須です' });
     }
 
-    if (!email) {
-      return _json({ error: 'メールアドレスは必須です' });
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return _json({ error: 'メールアドレスが正しくありません' });
     }
 
     var subjectLabel = company || name;
