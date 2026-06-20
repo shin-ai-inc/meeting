@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#061f44">
-  <meta name="description" content="ShinAI｜社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援">
+  <meta name="description" content="ShinAI｜社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ。情報基盤づくりとAI・業務最適化の伴走支援">
   <title>ShinAI｜AIが働ける土台を。</title>
 
   <meta property="og:title" content="ShinAI｜AIが働ける土台を。">
-  <meta property="og:description" content="社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援">
+  <meta property="og:description" content="社内に散在する文書・資料を整え、AIが読める・つながる・答えられる状態へ。情報基盤づくりとAI・業務最適化の伴走支援">
   <meta property="og:image" content="https://shinai-info.vercel.app/assets/ogp.png">
   <meta property="og:url" content="https://shinai-info.vercel.app">
   <meta property="og:type" content="website">
@@ -61,7 +61,7 @@
     }
 
     .header-sub {
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       font-weight: 400;
       color: var(--text-sub);
       letter-spacing: 0.16em;
@@ -119,6 +119,39 @@
 
     .hero-body p + p {
       margin-top: 1.2em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 2px 12px rgba(197, 165, 90, 0.25);
+      transition: background 0.2s;
+      min-height: 48px;
+    }
+
+    .hero-cta:hover {
+      background: #b8963f;
+    }
+
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: var(--white);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
     }
 
     /* ── 三つの状態 ── */
@@ -686,6 +719,10 @@
       <p>情報の構造化から活用環境の構築まで、<br>
       AIネイティブな基盤づくりを伴走します。</p>
     </div>
+    <a href="/consult" class="hero-cta rv">
+      <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+      30分無料相談を申し込む
+    </a>
   </section>
 
   <div class="trio rv">
