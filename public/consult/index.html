@@ -122,6 +122,7 @@
     }
 
     input[type="text"],
+    input[type="email"],
     textarea {
       width: 100%;
       font-family: "Noto Sans JP", "Hiragino Sans", sans-serif;
@@ -138,11 +139,13 @@
     }
 
     input[type="text"]:focus,
+    input[type="email"]:focus,
     textarea:focus {
       border-color: var(--border-focus);
     }
 
-    input[type="text"].has-error {
+    input[type="text"].has-error,
+    input[type="email"].has-error {
       border-color: var(--error);
     }
 
@@ -421,7 +424,7 @@
       // ============================================================
       // Google Apps Script のウェブアプリURL（デプロイ後に置き換え）
       // ============================================================
-      var GAS_URL = 'https://script.google.com/macros/s/AKfycbzXvsWJyTtXP2wveJmxCwWpGM9TTgCPT-0XfSifOzIDQWwjufmJ20g8oG3F6TlA1FpUNA/exec';
+      var GAS_URL = 'https://script.google.com/macros/s/AKfycby_3MBzUzM8N-YFdQhZu9qksW6fqvnQOjjQ35llsc0ajweHaTGTgHuRgkpMP9Eqeks/exec';
 
       var form = document.getElementById('consultForm');
       var btn = document.getElementById('submitBtn');
