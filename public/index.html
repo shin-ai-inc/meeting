@@ -16,43 +16,515 @@
   <meta property="og:site_name" content="ShinAI">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="preload" as="image" type="image/webp" href="assets/shinai-lp-sm.webp" media="(max-width: 640px)">
-  <link rel="preload" as="image" type="image/webp" href="assets/shinai-lp.webp" media="(min-width: 641px)">
-
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
     :root {
-      color-scheme: light;
       --navy: #061f44;
+      --navy-light: #0a2d5c;
+      --navy-pale: #0d3468;
       --gold: #c5a55a;
+      --gold-light: #d4b76a;
+      --gold-bg: #f7f4eb;
+      --text: #1a1a1a;
+      --text-sub: #5a5a5a;
+      --text-light: #8a8a8a;
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --border: #e8e6e2;
     }
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      min-height: 100%;
-      background: var(--navy);
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
     }
+
     body {
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    .serif { font-family: "Noto Serif JP", serif; }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      padding: 40px 24px 0;
+    }
+
+    .header-tagline {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--text-sub);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .header-brand {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.14em;
+    }
+
+    .header-divider {
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      margin: 16px auto 0;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 48px 24px 56px;
+      background: var(--bg);
+    }
+
+    .hero h1 {
+      font-family: "Noto Serif JP", serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      margin-bottom: 24px;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--navy);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-desc {
+      font-size: 0.875rem;
+      color: var(--text-sub);
+      line-height: 2;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── Concepts (読める・つながる・答えられる) ── */
+    .concepts {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0 24px 56px;
+      background: var(--bg);
+    }
+
+    .concept-item {
+      text-align: center;
+      flex: 0 0 auto;
+      padding: 0 16px;
+      position: relative;
+    }
+
+    .concept-item + .concept-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    .concept-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    }
+
+    .concept-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .concept-label {
+      font-family: "Noto Serif JP", serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Problem Statement ── */
+    .problem {
+      background: var(--navy);
+      padding: 64px 24px;
+      text-align: center;
+    }
+
+    .problem-pre {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .problem-main {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--gold);
+      line-height: 1.5;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .problem-post {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+    }
+
+    /* ── Pain Points ── */
+    .pain {
+      padding: 64px 24px;
+      background: var(--white);
+    }
+
+    .section-heading {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-align: center;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .pain-card {
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+
+    .pain-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pain-title {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .pain-desc {
+      font-size: 0.7rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ── Benefits ── */
+    .benefits {
+      padding: 64px 24px;
+      background: var(--gold-bg);
+    }
+
+    .benefits .section-heading {
+      margin-bottom: 36px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .benefit-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .benefit-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .benefit-title {
+      font-family: "Noto Serif JP", serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .benefit-desc {
+      font-size: 0.7rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ── Vision ── */
+    .vision {
+      padding: 64px 24px;
+      background: var(--white);
+      text-align: center;
+    }
+
+    .vision-sub {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .vision-outcomes {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    .lp {
-      width: min(100%, 1206px);
-      line-height: 0;
-      background: #fff;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(0, 0, 0, .18);
-      padding-bottom: 72px;
-    }
-    .lp-image {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 1206 / 2622;
+      gap: 20px;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
+    .vision-outcome {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      text-align: left;
+      padding: 20px;
+      background: var(--bg);
+      border-radius: 10px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .vision-outcome-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .vision-outcome-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .vision-outcome-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .vision-outcome-desc {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* ── Steps ── */
+    .steps {
+      padding: 64px 24px;
+      background: var(--bg);
+    }
+
+    .steps-list {
+      max-width: 440px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .steps-list::before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: 40px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+      padding-bottom: 36px;
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: "Noto Serif JP", serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-content {
+      padding-top: 6px;
+    }
+
+    .step-title {
+      font-family: "Noto Serif JP", serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* ── Closing ── */
+    .closing {
+      background: var(--navy);
+      padding: 64px 24px 48px;
+      text-align: center;
+    }
+
+    .closing-message {
+      font-family: "Noto Serif JP", serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.8;
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+    }
+
+    .closing-brand {
+      font-family: "Noto Serif JP", serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.14em;
+      margin-bottom: 40px;
+    }
+
+    .closing-divider {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+      margin: 0 auto 24px;
+    }
+
+    .closing-links {
+      font-size: 0.7rem;
+    }
+
+    .closing-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+
+    .closing-links a:hover {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── Floating CTA ── */
     .floating-cta {
       position: fixed;
       bottom: 0;
@@ -68,11 +540,13 @@
       transform: translateY(20px);
       transition: opacity 0.4s, transform 0.4s;
     }
+
     .floating-cta.visible {
       opacity: 1;
       transform: translateY(0);
       pointer-events: auto;
     }
+
     .floating-cta a {
       display: flex;
       align-items: center;
@@ -93,12 +567,15 @@
       transition: background 0.2s;
       min-height: 52px;
     }
+
     .floating-cta a:hover {
       background: #b8963f;
     }
+
     .floating-cta a:active {
       opacity: 0.9;
     }
+
     .floating-cta svg {
       width: 18px;
       height: 18px;
@@ -110,29 +587,291 @@
       flex-shrink: 0;
     }
 
-    @media (min-width: 1207px) {
-      body { padding: 24px 0 0; }
-      .lp { border-radius: 2px; }
+    /* ── Bottom safe area for floating CTA ── */
+    body::after {
+      content: "";
+      display: block;
+      height: 80px;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Desktop ── */
+    @media (min-width: 640px) {
+      .hero h1 { font-size: 2.5rem; }
+      .problem-main { font-size: 2rem; }
+      .section-heading { font-size: 1.4rem; }
+
+      .pain-grid,
+      .benefits-grid {
+        max-width: 600px;
+        gap: 20px;
+      }
+
+      .pain-card,
+      .benefit-item {
+        padding: 28px 20px;
+      }
+
+      .vision-outcomes {
+        max-width: 480px;
+      }
+
+      .steps-list {
+        max-width: 500px;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .hero { padding: 64px 24px 72px; }
+      .problem { padding: 80px 24px; }
+      .pain, .benefits, .vision, .steps { padding: 80px 24px; }
+      .closing { padding: 80px 24px 56px; }
+
+      .pain-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 800px;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 800px;
+      }
+
+      .vision-outcomes {
+        flex-direction: row;
+        max-width: 800px;
+        gap: 24px;
+      }
+
+      .vision-outcome {
+        flex-direction: column;
+        text-align: center;
+        border-left: none;
+        border-top: 3px solid var(--gold);
+      }
+
+      .vision-outcome-icon {
+        margin: 0 auto;
+      }
+
+      .steps-list {
+        max-width: 560px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="lp" aria-label="ShinAI AIネイティブ基盤のご案内">
-    <picture>
-      <source srcset="assets/shinai-lp-sm.webp" type="image/webp" media="(max-width: 640px)">
-      <source srcset="assets/shinai-lp.webp" type="image/webp">
-      <img
-        class="lp-image"
-        src="assets/shinai-lp-1206x2622.png"
-        width="1206"
-        height="2622"
-        alt="ShinAI。社内に散在する文書・資料・台帳を整え、AIが読める・つながる・答えられる状態へ導く情報基盤づくりと伴走支援のご案内。"
-        fetchpriority="high"
-        decoding="async"
-      >
-    </picture>
-  </main>
 
+  <!-- Header -->
+  <header class="header">
+    <p class="header-tagline">AI・業務自動化の伴走支援</p>
+    <div class="header-brand serif">ShinAI</div>
+    <span class="header-divider"></span>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>まずは、<br>AIが働ける<br>土台を。</h1>
+    <div class="hero-tags">
+      <span class="hero-tag">文書・資料</span>
+      <span class="hero-tag">台帳・管理</span>
+      <span class="hero-tag">AI＋ヒト</span>
+    </div>
+    <p class="hero-desc">
+      社内に散在する文書・資料・台帳を整え、<br>
+      AIが「読める・つながる・答えられる」状態へ。<br><br>
+      ShinAIは、情報の構造化から活用環境の構築まで、<br>
+      AIネイティブな基盤づくりを伴走します。
+    </p>
+  </section>
+
+  <!-- Concepts -->
+  <div class="concepts reveal">
+    <div class="concept-item">
+      <div class="concept-icon">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div class="concept-label">読める</div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-icon">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
+      </div>
+      <div class="concept-label">つながる</div>
+    </div>
+    <div class="concept-item">
+      <div class="concept-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <div class="concept-label">答えられる</div>
+    </div>
+  </div>
+
+  <!-- Problem Statement -->
+  <section class="problem reveal">
+    <p class="problem-pre">多くのAI活用課題は、AIの性能ではなく、</p>
+    <p class="problem-main serif">「情報の持ち方」</p>
+    <p class="problem-post">から生まれています。</p>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="pain">
+    <h2 class="section-heading reveal">こんなお悩みはありませんか？</h2>
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="pain-title">ファイルの散在</div>
+        <div class="pain-desc">必要な資料がどこにあるか分からず、探すたびに時間がかかる</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="pain-title">ナレッジの属人化</div>
+        <div class="pain-desc">特定の担当者しか知らない情報が多く、引き継ぎに不安がある</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="pain-title">情報の断絶</div>
+        <div class="pain-desc">部門やツールをまたぐと情報がつながらず、全体像が見えない</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="pain-title">整理する余裕がない</div>
+        <div class="pain-desc">日常業務に追われ、情報の整理・体系化が後回しになっている</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="benefits">
+    <h2 class="section-heading reveal">情報を整えると、AIは組織の力になります。</h2>
+    <div class="benefits-grid reveal">
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="benefit-title serif">探す時間が減る</div>
+        <div class="benefit-desc">必要な情報に、必要なときにたどり着ける</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="benefit-title serif">判断が速くなる</div>
+        <div class="benefit-desc">正確な情報に基づいた、素早い意思決定ができる</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <div class="benefit-title serif">知識が組織に残る</div>
+        <div class="benefit-desc">属人化を防ぎ、ナレッジを組織の資産に変える</div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="benefit-title serif">安全に活用できる</div>
+        <div class="benefit-desc">情報の整理が、セキュリティの土台になる</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="vision">
+    <h2 class="section-heading reveal">6か月後、御社に残るもの。</h2>
+    <p class="vision-sub reveal">AI活用の土台と、組織に染みこむ伴走の成果。</p>
+    <div class="vision-outcomes reveal">
+      <div class="vision-outcome">
+        <div class="vision-outcome-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div>
+          <div class="vision-outcome-title">AIが読める情報基盤</div>
+          <div class="vision-outcome-desc">文書・資料がAIに対応した形で構造化されている</div>
+        </div>
+      </div>
+      <div class="vision-outcome">
+        <div class="vision-outcome-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <div class="vision-outcome-title">自走できる運用体制</div>
+          <div class="vision-outcome-desc">社内で継続的に情報を整理・活用できる体制</div>
+        </div>
+      </div>
+      <div class="vision-outcome">
+        <div class="vision-outcome-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <div class="vision-outcome-title">組織に根づく知の文化</div>
+          <div class="vision-outcome-desc">情報を共有し活用する文化が自然に根づいている</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="steps">
+    <h2 class="section-heading reveal">導入から定着まで、<br>3つのステップで伴走します。</h2>
+    <div class="steps-list reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title serif">現状の把握と整理</div>
+          <div class="step-desc">社内の文書・資料・データの現状を調査し、課題と優先順位を明確にします。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title serif">AIが動ける形に構造化</div>
+          <div class="step-desc">情報を整理・分類し、AIが読める・つながる状態へ基盤を構築します。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title serif">定着と継続的な改善</div>
+          <div class="step-desc">運用が組織に定着するまで伴走し、改善のサイクルを支援します。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <footer class="closing">
+    <p class="closing-message reveal">
+      人とAIの伴走を設計し、<br>
+      情報を組織の力に変える。
+    </p>
+    <div class="closing-brand serif">ShinAI</div>
+    <span class="closing-divider"></span>
+    <div class="closing-links">
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </footer>
+
+  <!-- Floating CTA -->
   <div class="floating-cta" id="floatingCta">
     <a href="/consult">
       <svg viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -142,6 +881,7 @@
 
   <script>
     (function () {
+      /* Floating CTA scroll trigger */
       var cta = document.getElementById('floatingCta');
       var shown = false;
       var ticking = false;
@@ -158,6 +898,25 @@
         });
       }
       window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* Scroll reveal */
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
     })();
   </script>
 </body>
